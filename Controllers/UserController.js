@@ -30,7 +30,7 @@ export const userProfileUpdate = async (req, res) => {
       {
         $set: {
           name: req.body.username,
-          phone: req.body.phone,
+          // phone: req.body.phone,
           phonepe: req.body.phonepe,
           address: req.body.address,
         },

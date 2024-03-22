@@ -17,6 +17,7 @@ import {
   updatedOwnDistrictTask,
   userGetScoreGreaterThanEight,
   usersNotAssignTaskMandalwise,
+  onFetchAllDistrictWiseAssemblyCoor,
 } from "../Controllers/DistrictController.js";
 const router = express.Router();
 
@@ -77,6 +78,11 @@ router.get(
 router.put(
   "/all/assemblycoor/added/ps/state/:state/district/:district/assembly/:assembly/userid/:id/name/:name/phone/:phone",
   addedAssemblyCoorTask
+);
+
+router.get(
+  "/fetch/all/assembly/coor/state/:state/district/:district",
+  onFetchAllDistrictWiseAssemblyCoor
 );
 
 export default router;

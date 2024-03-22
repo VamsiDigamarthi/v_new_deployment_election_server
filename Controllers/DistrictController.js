@@ -538,3 +538,31 @@ export const addedAssemblyCoorTask = async (req, res) => {
     });
   }
 };
+
+export const onFetchAllDistrictWiseAssemblyCoor = async (req, res) => {
+  const taskModal = getDb().db().collection("users");
+  // console.log(req.params.state);
+  // console.log(req.params.district);
+  try {
+    const result = await taskModal
+      .find({
+        $and: [
+          {
+            state: req.params.state,
+          },
+          {
+            district: req.params.district,
+          },
+          { role: "5" },
+        ],
+      })
+      .toArray();
+    // console.log(result);
+    res.status(200).json(result);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      msg: error,
+    });
+  }
+};
