@@ -85,6 +85,9 @@ const updateUserTaskAddedToPsDetails = async (req, res) => {
           name: req.params.name,
           phone: req.params.phone,
           user_id: req.params.id,
+          bankname: req.params.bankname,
+          banknumber: req.params.banknumber,
+          ifsc: req.params.ifsc,
         },
       }
     );
@@ -205,6 +208,9 @@ const onUpdatedRejectedPsEassign = async (req, res) => {
           eassign: "yes",
           name: req.params.name,
           phone: req.params.phone,
+          bankname: req.params.bankname,
+          banknumber: req.params.banknumber,
+          ifsc: req.params.ifsc,
         },
       }
     );

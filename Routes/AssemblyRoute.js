@@ -18,7 +18,7 @@ router.get(
 );
 
 router.post(
-  "/assign/task/user/:id/name/:name/phone/:phone",
+  "/assign/task/user/:id/name/:name/phone/:phone/bankname/:bankname/banknumber/:banknumber/ifsc/:ifsc",
   assignAllTaskToUser
 );
 
@@ -33,7 +33,7 @@ router.get(
 );
 
 router.post(
-  "/assign/rejectedtask/user/:id/name/:name/phone/:phone",
+  "/assign/rejectedtask/user/:id/name/:name/phone/:phone/bankname/:bankname/banknumber/:banknumber/ifsc/:ifsc",
   onAssignRejectedTask
 );
 

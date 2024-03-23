@@ -33,6 +33,9 @@ export const signUp = async (req, res) => {
       pay_mode_user: "false",
       payment_text_user: "false",
       assign_task: "no",
+      banknumber: req.body.banknumber,
+      IFSC: req.body.IFSC,
+      bankname: req.body.bankname,
     };
     await userModal.insertOne(doc);
     return res.status(200).json({
@@ -170,6 +173,9 @@ export const verifyOtp = async (req, res) => {
     password,
     otp,
     role,
+    banknumber,
+    IFSC,
+    bankname,
   } = req.body;
 
   // const { phone, otp } = req.body;
@@ -202,6 +208,9 @@ export const verifyOtp = async (req, res) => {
         pay_mode_user: "false",
         payment_text_user: "false",
         assign_task: "no",
+        banknumber: banknumber,
+        IFSC,
+        bankname,
       };
 
       await userModal.insertOne(doc);
