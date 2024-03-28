@@ -225,3 +225,46 @@ export const downloadCertificate = async (req, res) => {
     });
   }
 };
+
+export const incresePreviweCount = async (req, res) => {
+  const userModal = getDb().db().collection("users");
+
+  try {
+    await userModal.updateOne(
+      { _id: new ObjectId(req.params.id) },
+      { $inc: { downloadPreview: 1 } },
+      { returnOriginal: false }
+    );
+    res.status(200).json("download certificated successfully ...!");
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      msg: "something went wrong please try again ....",
+    });
+  }
+};
+
+export const uploadLongLatiSpeed = async (req, res) => {
+  // console.log(req.body);
+  const taskModal = getDb().db().collection("tasks");
+  try {
+    await taskModal.updateOne(
+      { _id: new ObjectId(req.params.id) },
+      {
+        $set: {
+          latitude: req.body.latitude,
+          longitude: req.body.longitude,
+          airtelSpped: req.body.airtelSpped,
+          jioSpeed: req.body.jioSpeed,
+          bsnlSpeed: req.body.bsnlSpeed,
+        },
+      }
+    );
+    res.status(200).json("download certificated successfully ...!");
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      msg: "something went wrong please try again ....",
+    });
+  }
+};

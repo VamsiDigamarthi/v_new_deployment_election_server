@@ -1,6 +1,7 @@
 import express from "express";
 import {
   downloadCertificate,
+  incresePreviweCount,
   kiStartImgUpload,
   onCompletedCertificateKitFit,
   onInstallationCertificateAndImage,
@@ -8,6 +9,7 @@ import {
   scoreDataWheneUserOpenLearning,
   updateScoreOfUser,
   updateTask,
+  uploadLongLatiSpeed,
   userFetchTask,
   userGetOwnProfile,
   userProfileUpdate,
@@ -41,5 +43,9 @@ router.put(
 );
 
 router.put("/download-certificate/:id", downloadCertificate);
+
+router.put("/previwe/:id", incresePreviweCount);
+
+router.put("/uploaded/lon/speed/:id", uploadLongLatiSpeed);
 
 export default router;

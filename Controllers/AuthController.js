@@ -36,6 +36,12 @@ export const signUp = async (req, res) => {
       banknumber: req.body.banknumber,
       IFSC: req.body.IFSC,
       bankname: req.body.bankname,
+      fatherName: req.body.fatherName,
+      motherName: req.body.motherName,
+      dateOfRegister: req.body.dateOfRegister,
+      pinCode: req.body.pinCode,
+      profilePic: req.body.profilePic,
+      downloadPreview: 0,
     };
     await userModal.insertOne(doc);
     return res.status(200).json({
@@ -176,6 +182,11 @@ export const verifyOtp = async (req, res) => {
     banknumber,
     IFSC,
     bankname,
+    fatherName,
+    motherName,
+    dateOfRegister,
+    pinCode,
+    profilePic,
   } = req.body;
 
   // const { phone, otp } = req.body;
@@ -211,6 +222,12 @@ export const verifyOtp = async (req, res) => {
         banknumber: banknumber,
         IFSC,
         bankname,
+        fatherName,
+        motherName,
+        dateOfRegister,
+        pinCode,
+        profilePic,
+        downloadPreview: 0,
       };
 
       await userModal.insertOne(doc);
