@@ -7,6 +7,7 @@ import {
   bulkUpload,
   districtCoorTask,
   districtCoordinatorShowStateCoordinator,
+  fetchAllPsToRegistor,
   onSecondTimeAccepted,
   psDetailsFilterBasedOnDistrict,
   recheckingDocumentBasedOnId,
@@ -42,5 +43,7 @@ router.put("/second/time/accepted/:id", onSecondTimeAccepted);
 router.put("/rechecking/documents/:id", recheckingDocumentBasedOnId);
 
 router.get("/all/district/coordinator/:state", allDistrictCoorSpecificState);
+
+router.get("/fetch/all/ps/to/registor", fetchAllPsToRegistor)
 
 export default router;

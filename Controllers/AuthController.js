@@ -44,6 +44,7 @@ export const signUp = async (req, res) => {
       pinCode: req.body.pinCode,
       profilePic: req.body.profilePic,
       downloadPreview: 0,
+      branchName: req.body?.branchName
     };
     await userModal.insertOne(doc);
     return res.status(200).json({
@@ -231,6 +232,7 @@ export const verifyOtp = async (req, res) => {
         pinCode: req.body.pinCode,
         profilePic: req.body.profilePic,
         downloadPreview: 0,
+        branchName : req.body?.branchName
       };
 
       await userModal.insertOne(doc);

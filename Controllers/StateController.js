@@ -246,3 +246,19 @@ export const recheckingDocumentBasedOnId = async (req, res) => {
     });
   }
 };
+
+
+export const fetchAllPsToRegistor = async (req, res) => {
+  const psModal = getDb().db().collection("ps_details");
+  try {
+
+    const result = await psModal.find({}).toArray()
+
+    res.status(200).json(result)
+
+  } catch (error) {
+    return res.status(500).json({
+      msg: error,
+    });
+  }
+}
