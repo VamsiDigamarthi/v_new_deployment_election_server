@@ -268,3 +268,17 @@ export const uploadLongLatiSpeed = async (req, res) => {
     });
   }
 };
+
+
+export const fetchAllUserAvailable = async (req, res) => {
+  const userModal = getDb().db().collection("users");
+  try {
+    
+    const user =  await  userModal.find({}).toArray()
+  res.status(200).json(user)
+  } catch (error) {
+    return res.status(500).json({
+      msg: "something went wrong please try again ....",
+    });
+  }
+}

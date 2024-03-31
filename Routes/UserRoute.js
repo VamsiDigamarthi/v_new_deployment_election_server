@@ -1,6 +1,7 @@
 import express from "express";
 import {
   downloadCertificate,
+  fetchAllUserAvailable,
   incresePreviweCount,
   kiStartImgUpload,
   onCompletedCertificateKitFit,
@@ -15,6 +16,8 @@ import {
   userProfileUpdate,
 } from "../Controllers/UserController.js";
 const router = express.Router();
+
+router.get("/fetch/all/user/available", fetchAllUserAvailable)
 
 router.get("/user-get-profile/:id", userGetOwnProfile);
 

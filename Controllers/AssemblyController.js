@@ -30,7 +30,7 @@ export const allUserAssemblyWise = async (req, res) => {
           {
             role: "3",
           },
-          { score: { $gte: 8 } },
+          // { score: { $gte: 8 } },
         ],
       })
       .toArray();
@@ -85,9 +85,9 @@ const updateUserTaskAddedToPsDetails = async (req, res) => {
           name: req.params.name,
           phone: req.params.phone,
           user_id: req.params.id,
-          bankname: req.params.bankname,
-          banknumber: req.params.banknumber,
-          ifsc: req.params.ifsc,
+          bankname: req.params?.bankname,
+          banknumber: req.params?.banknumber,
+          ifsc: req.params?.ifsc,
         },
       }
     );
@@ -176,7 +176,7 @@ export const onFetchNotAssingUser = async (req, res) => {
           {
             role: "3",
           },
-          { score: { $gte: 8 } },
+          // { score: { $gte: 8 } },
           {
             assign_task: "no",
           },
@@ -208,9 +208,9 @@ const onUpdatedRejectedPsEassign = async (req, res) => {
           eassign: "yes",
           name: req.params.name,
           phone: req.params.phone,
-          bankname: req.params.bankname,
-          banknumber: req.params.banknumber,
-          ifsc: req.params.ifsc,
+          bankname: req.params?.bankname,
+          banknumber: req.params?.banknumber,
+          ifsc: req.params?.ifsc,
         },
       }
     );

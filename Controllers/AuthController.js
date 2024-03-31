@@ -7,7 +7,9 @@ import "dotenv/config";
 
 export const signUp = async (req, res) => {
   // const { mandal } = req.body;
-  console.log("mandal");
+
+  // console.log("ghnm,.")
+  // console.log(req.body);
   const userModal = getDb().db().collection("users");
   let mandals = req.body.mandal;
   mandals = mandals.toString().toLowerCase();
@@ -18,14 +20,14 @@ export const signUp = async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
-      phonepe: req.body.phonepe,
+      phonepe: req.body?.phonepe,
       address: req.body.address,
       voteridnumber: req.body.voteridnumber,
       adharnumber: req.body.adharnumber,
       voteridurl: req.body.voterIdImage,
       adharidurl: req.body.adharIdImage,
       mandal: mandals,
-      password: req.body.password,
+      password: req.body?.password,
       role: req.body.role,
       assembly: req.body.assembly,
       score: "",
@@ -33,9 +35,9 @@ export const signUp = async (req, res) => {
       pay_mode_user: "false",
       payment_text_user: "false",
       assign_task: "no",
-      banknumber: req.body.banknumber,
-      IFSC: req.body.IFSC,
-      bankname: req.body.bankname,
+      banknumber: req.body?.banknumber,
+      IFSC: req.body?.IFSC,
+      bankname: req.body?.bankname,
       fatherName: req.body.fatherName,
       motherName: req.body.motherName,
       dateOfRegister: req.body.dateOfRegister,
@@ -162,6 +164,7 @@ export const sendOtp = async (req, res) => {
 export const verifyOtp = async (req, res) => {
   let mandals = req.body.mandal;
   mandals = mandals.toLowerCase();
+  // console.log(req.body);
 
   const {
     phone,
@@ -199,34 +202,34 @@ export const verifyOtp = async (req, res) => {
   if (result) {
     if (result.otp_value.toString() === otp) {
       const doc = {
-        state: state,
-        district: dist,
-        name: name,
-        email: email,
-        phone: phone,
-        phonepe: phonepe,
-        address: address,
-        voteridnumber: voteridnumber,
-        adharnumber: adharnumber,
-        voteridurl: voterIdImage,
-        adharidurl: adharIdImage,
+        state: req.body.state,
+        district: req.body.dist,
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        phonepe: req.body?.phonepe,
+        address: req.body.address,
+        voteridnumber: req.body.voteridnumber,
+        adharnumber: req.body.adharnumber,
+        voteridurl: req.body.voterIdImage,
+        adharidurl: req.body.adharIdImage,
         mandal: mandals,
-        password: password,
-        assembly: assembly,
-        role: role,
+        password: req.body?.password,
+        role: req.body.role,
+        assembly: req.body.assembly,
         score: "",
         pay_mode_admin: "false",
         pay_mode_user: "false",
         payment_text_user: "false",
         assign_task: "no",
-        banknumber: banknumber,
-        IFSC,
-        bankname,
-        fatherName,
-        motherName,
-        dateOfRegister,
-        pinCode,
-        profilePic,
+        banknumber: req.body?.banknumber,
+        IFSC: req.body?.IFSC,
+        bankname: req.body?.bankname,
+        fatherName: req.body.fatherName,
+        motherName: req.body.motherName,
+        dateOfRegister: req.body.dateOfRegister,
+        pinCode: req.body.pinCode,
+        profilePic: req.body.profilePic,
         downloadPreview: 0,
       };
 

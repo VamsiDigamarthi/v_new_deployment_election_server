@@ -70,7 +70,9 @@ export const userGetScoreGreaterThanEight = async (req, res) => {
   try {
     const result = await userModal
       .find({
-        $and: [{ score: { $gte: 8 } }, { district: req.params.district }],
+        $and: [
+          // { score: { $gte: 8 } }, 
+          { district: req.params.district }],
       })
       .toArray();
     res.status(200).json(result);
@@ -95,7 +97,7 @@ export const usersNotAssignTaskMandalwise = async (req, res) => {
           { mandal: req.body.mandal?.toLowerCase() },
           { role: "3" },
           { assign_task: "no" },
-          { score: { $gte: 8 } },
+          // { score: { $gte: 8 } },
         ],
       })
       .project({ name: 1, phone: 1, mandal: 1 })
@@ -119,7 +121,7 @@ export const notAssignMandalWiseUser = async (req, res) => {
           { district: req.params.district },
           { role: "3" },
           { assign_task: "no" },
-          { score: { $gte: 8 } },
+          // { score: { $gte: 8 } },
         ],
       })
       .toArray();
