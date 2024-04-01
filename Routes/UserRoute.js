@@ -49,6 +49,6 @@ router.put("/download-certificate/:id", downloadCertificate);
 
 router.put("/previwe/:id", incresePreviweCount);
 
-router.put("/uploaded/lon/speed/:id", uploadLongLatiSpeed);
+router.put("/uploaded/lon/speed/:id/taskId/:taskId", uploadLongLatiSpeed);
 
 export default router;

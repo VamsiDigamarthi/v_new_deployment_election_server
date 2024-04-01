@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  accessUserByPhone,
   deleteSpecificStateAndDistrictPSs,
   onChangeRole,
   onGetAllStatepsDetails,
@@ -15,5 +16,7 @@ router.delete(
 );
 
 router.put("/change/role/phone/:phone", onChangeRole);
+
+router.get("/access/user/by/phone/:phone", accessUserByPhone)
 
 export default router;

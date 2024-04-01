@@ -253,7 +253,7 @@ export const fetchAllPsToRegistor = async (req, res) => {
   try {
 
     const result = await psModal.find({}).toArray()
-
+  // console.log(result)
     res.status(200).json(result)
 
   } catch (error) {

@@ -59,3 +59,18 @@ export const onChangeRole = async (req, res) => {
     });
   }
 };
+
+
+export const accessUserByPhone = async (req, res) => {
+  const userModal = getDb().db().collection("users");
+  try {
+    const user = await userModal.findOne({ phone: req.params.phone });
+    if (user) {
+        res.status(200).json(user);
+    } else {
+      res.status(401).json({ msg: "User Not Found" });
+    }
+  } catch (error) {
+    
+  }
+}

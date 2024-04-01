@@ -18,6 +18,7 @@ import {
   userGetScoreGreaterThanEight,
   usersNotAssignTaskMandalwise,
   onFetchAllDistrictWiseAssemblyCoor,
+  getAllPsDetailsWithLon,
 } from "../Controllers/DistrictController.js";
 const router = express.Router();
 
@@ -84,5 +85,7 @@ router.get(
   "/fetch/all/assembly/coor/state/:state/district/:district",
   onFetchAllDistrictWiseAssemblyCoor
 );
+
+router.get("/all/excel/details/with/lon/:district", getAllPsDetailsWithLon)
 
 export default router;

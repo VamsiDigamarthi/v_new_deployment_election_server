@@ -72,7 +72,9 @@ export const userGetScoreGreaterThanEight = async (req, res) => {
       .find({
         $and: [
           // { score: { $gte: 8 } }, 
-          { district: req.params.district }],
+          { district: req.params.district },
+          { role: "3" },
+        ],
       })
       .toArray();
     res.status(200).json(result);
@@ -360,7 +362,7 @@ export const addRejectedTask = async (req, res) => {
   }
 };
 
-export const rejectedTaskDistrictBased = async (req, res) => {};
+export const rejectedTaskDistrictBased = async (req, res) => { };
 
 export const exelData = async (req, res) => {
   // console.log(req.params.district);
@@ -568,3 +570,27 @@ export const onFetchAllDistrictWiseAssemblyCoor = async (req, res) => {
     });
   }
 };
+
+
+export const getAllPsDetailsWithLon = async (req, res) => {
+  const psModal = getDb().db().collection("ps_details");
+  const taskModal = getDb().db().collection("tasks");
+  try {
+    const result = await psModal.aggregate([
+      {
+        "$lookup": {
+          "from": "tasks",
+          "localField": "_id",
+          "foreignField": "task_id",
+          "as": "UnassignedOrders"
+        }
+      },
+    ])
+
+    res.status(200).json(result)
+  } catch (error) {
+    return res.status(500).json({
+      msg: error,
+    });
+  }
+}

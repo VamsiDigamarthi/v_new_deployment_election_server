@@ -244,8 +244,33 @@ export const incresePreviweCount = async (req, res) => {
   }
 };
 
+const addedLogLatOnPsTable = async (req, res) => {
+  const psModal = getDb().db().collection("ps_details");
+  try {
+    await psModal.updateOne(
+      { _id: new ObjectId(req.params.taskId) },
+      {
+        $set: {
+          latitude: req.body.latitude,
+          longitude: req.body.longitude,
+          airtelSpped: req.body.airtelSpped,
+          jioSpeed: req.body.jioSpeed,
+          bsnlSpeed: req.body.bsnlSpeed,
+          power:req.body.power
+        },
+      }
+    );
+    res.status(200).json("download certificated successfully ...!");
+  } catch (error) {
+    return res.status(500).json({
+      msg: "something went wrong please try again ....",
+    });
+  }
+}
+
 export const uploadLongLatiSpeed = async (req, res) => {
-  // console.log(req.body);
+  console.log(req.params.id);
+  console.log(req.params.taskId)
   const taskModal = getDb().db().collection("tasks");
   try {
     await taskModal.updateOne(
@@ -257,10 +282,12 @@ export const uploadLongLatiSpeed = async (req, res) => {
           airtelSpped: req.body.airtelSpped,
           jioSpeed: req.body.jioSpeed,
           bsnlSpeed: req.body.bsnlSpeed,
+          power:req.body.power
         },
       }
     );
-    res.status(200).json("download certificated successfully ...!");
+    addedLogLatOnPsTable(req, res)
+    // res.status(200).json("download certificated successfully ...!");
   } catch (error) {
     console.log(error);
     return res.status(500).json({
