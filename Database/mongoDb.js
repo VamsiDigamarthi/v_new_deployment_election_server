@@ -4,9 +4,9 @@ const ObjectId = mongodb.ObjectId;
 
 const MongoClient = mongodb.MongoClient;
 
-// const mongoDbUrl = process.env.MONGODB_URL;
+const mongoDbUrl = process.env.MONGODB_URL;
 
-const mongoDbUrl = "mongodb+srv://vams:vamsi08050321@cluster0.iklm77i.mongodb.net/election?retryWrites=true&w=majority"
+// const mongoDbUrl = "mongodb+srv://vams:vamsi08050321@cluster0.iklm77i.mongodb.net/election?retryWrites=true&w=majority"
 
 let _db;
 export const initDb = (callback) => {

@@ -18,13 +18,13 @@ export const signUp = async (req, res) => {
       state: req.body.state,
       district: req.body.dist,
       name: req.body.name,
-      email: req.body.email,
+      email: req.body?.email,
       phone: req.body.phone,
       phonepe: req.body?.phonepe,
       address: req.body.address,
-      voteridnumber: req.body.voteridnumber,
-      adharnumber: req.body.adharnumber,
-      voteridurl: req.body.voterIdImage,
+      voteridnumber: req.body?.voteridnumber,
+      adharnumber: req.body?.adharnumber,
+      voteridurl: req.body?.voterIdImage,
       adharidurl: req.body.adharIdImage,
       mandal: mandals,
       password: req.body?.password,
@@ -38,13 +38,13 @@ export const signUp = async (req, res) => {
       banknumber: req.body?.banknumber,
       IFSC: req.body?.IFSC,
       bankname: req.body?.bankname,
-      fatherName: req.body.fatherName,
-      motherName: req.body.motherName,
+      fatherName: req.body?.fatherName,
+      motherName: req.body?.motherName,
       dateOfRegister: req.body.dateOfRegister,
       pinCode: req.body.pinCode,
       profilePic: req.body.profilePic,
       downloadPreview: 0,
-      branchName: req.body?.branchName
+      branchName: req.body?.branchName,
     };
     await userModal.insertOne(doc);
     return res.status(200).json({
@@ -232,7 +232,7 @@ export const verifyOtp = async (req, res) => {
         pinCode: req.body.pinCode,
         profilePic: req.body.profilePic,
         downloadPreview: 0,
-        branchName : req.body?.branchName
+        branchName: req.body?.branchName,
       };
 
       await userModal.insertOne(doc);

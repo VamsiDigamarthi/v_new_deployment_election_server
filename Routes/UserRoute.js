@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  allUserDataFromPDFFile,
   downloadCertificate,
   fetchAllUserAvailable,
   incresePreviweCount,
@@ -17,7 +18,7 @@ import {
 } from "../Controllers/UserController.js";
 const router = express.Router();
 
-router.get("/fetch/all/user/available", fetchAllUserAvailable)
+router.get("/fetch/all/user/available", fetchAllUserAvailable);
 
 router.get("/user-get-profile/:id", userGetOwnProfile);
 
@@ -50,5 +51,12 @@ router.put("/download-certificate/:id", downloadCertificate);
 router.put("/previwe/:id", incresePreviweCount);
 
 router.put("/uploaded/lon/speed/:id/taskId/:taskId", uploadLongLatiSpeed);
+
+// download pdf files all users
+
+router.get(
+  "/all/user/pdf/file/state/:state/district/:district/assembly/:assembly",
+  allUserDataFromPDFFile
+);
 
 export default router;

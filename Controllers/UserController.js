@@ -256,7 +256,7 @@ const addedLogLatOnPsTable = async (req, res) => {
           airtelSpped: req.body.airtelSpped,
           jioSpeed: req.body.jioSpeed,
           bsnlSpeed: req.body.bsnlSpeed,
-          power:req.body.power
+          power: req.body.power,
         },
       }
     );
@@ -266,11 +266,11 @@ const addedLogLatOnPsTable = async (req, res) => {
       msg: "something went wrong please try again ....",
     });
   }
-}
+};
 
 export const uploadLongLatiSpeed = async (req, res) => {
   console.log(req.params.id);
-  console.log(req.params.taskId)
+  console.log(req.params.taskId);
   const taskModal = getDb().db().collection("tasks");
   try {
     await taskModal.updateOne(
@@ -282,11 +282,11 @@ export const uploadLongLatiSpeed = async (req, res) => {
           airtelSpped: req.body.airtelSpped,
           jioSpeed: req.body.jioSpeed,
           bsnlSpeed: req.body.bsnlSpeed,
-          power:req.body.power
+          power: req.body.power,
         },
       }
     );
-    addedLogLatOnPsTable(req, res)
+    addedLogLatOnPsTable(req, res);
     // res.status(200).json("download certificated successfully ...!");
   } catch (error) {
     console.log(error);
@@ -296,16 +296,87 @@ export const uploadLongLatiSpeed = async (req, res) => {
   }
 };
 
-
 export const fetchAllUserAvailable = async (req, res) => {
   const userModal = getDb().db().collection("users");
   try {
-    
-    const user =  await  userModal.find({}).toArray()
-  res.status(200).json(user)
+    const user = await userModal
+      .find(
+        { state: "Assam" },
+        {
+          projection: {
+            _id: 0,
+            state: 1,
+            district: 1,
+            name: 1,
+            phone: 1,
+            email: 1,
+            pinCode: 1,
+            phonepe: 1,
+            role: 1,
+            fatherName: 1,
+            motherName: 1,
+            mandal: 1,
+            addres: 1,
+            adharnumber: 1,
+            dateOfRegister: 1,
+            assembly: 1,
+            bankname: 1,
+            banknumber: 1,
+            branchName: 1,
+            IFSC: 1,
+          },
+        }
+      )
+      .toArray();
+    res.status(200).json(user);
   } catch (error) {
     return res.status(500).json({
       msg: "something went wrong please try again ....",
     });
   }
-}
+};
+
+export const allUserDataFromPDFFile = async (req, res) => {
+  const userModal = getDb().db().collection("users");
+  try {
+    const users = await userModal
+      .find(
+        {
+          $and: [
+            { state: req.params.state },
+            { district: req.params.district },
+            { assembly: req.params.assembly },
+          ],
+        },
+        {
+          projection: {
+            _id: 0,
+            // state: 1,
+            // district: 1,
+            name: 1,
+            phone: 1,
+            email: 1,
+            pinCode: 1,
+            // phonepe: 1,
+            // role: 1,
+            fatherName: 1,
+            motherName: 1,
+            mandal: 1,
+            addres: 1,
+            adharnumber: 1,
+            // dateOfRegister: 1,
+            assembly: 1,
+
+            profilePic: 1,
+          },
+        }
+      )
+
+      .toArray();
+    res.status(200).json(users);
+  } catch (error) {
+    return res.status(500).json({
+      msg: "something went wrong please try again ....",
+    });
+  }
+};
