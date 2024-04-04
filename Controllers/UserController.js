@@ -346,6 +346,7 @@ export const allUserDataFromPDFFile = async (req, res) => {
             { state: req.params.state },
             { district: req.params.district },
             { assembly: req.params.assembly },
+            { role: "3" },
           ],
         },
         {

@@ -13,48 +13,57 @@ export const signUp = async (req, res) => {
   const userModal = getDb().db().collection("users");
   let mandals = req.body.mandal;
   mandals = mandals.toString().toLowerCase();
-  try {
-    const doc = {
-      state: req.body.state,
-      district: req.body.dist,
-      name: req.body.name,
-      email: req.body?.email,
-      phone: req.body.phone,
-      phonepe: req.body?.phonepe,
-      address: req.body.address,
-      voteridnumber: req.body?.voteridnumber,
-      adharnumber: req.body?.adharnumber,
-      voteridurl: req.body?.voterIdImage,
-      adharidurl: req.body.adharIdImage,
-      mandal: mandals,
-      password: req.body?.password,
-      role: req.body?.role ? req.body?.role : "3",
-      assembly: req.body.assembly,
-      score: "",
-      pay_mode_admin: "false",
-      pay_mode_user: "false",
-      payment_text_user: "false",
-      assign_task: "no",
-      banknumber: req.body?.banknumber,
-      IFSC: req.body?.IFSC,
-      bankname: req.body?.bankname,
-      fatherName: req.body?.fatherName,
-      motherName: req.body?.motherName,
-      dateOfRegister: req.body.dateOfRegister,
-      pinCode: req.body.pinCode,
-      profilePic: req.body.profilePic,
-      downloadPreview: 0,
-      branchName: req.body?.branchName,
-    };
-    await userModal.insertOne(doc);
-    return res.status(200).json({
-      resp: true,
-      msg: "Registration Successfully ..!",
-    });
-  } catch (error) {
+
+  const user = await userModal.findOne({ phone: req.body?.phone });
+  // console.log(user);
+  if (user) {
     return res.status(500).json({
-      msg: error,
+      msg: "User Already exist",
     });
+  } else {
+    try {
+      const doc = {
+        state: req.body.state,
+        district: req.body.dist,
+        name: req.body.name,
+        email: req.body?.email,
+        phone: req.body.phone,
+        phonepe: req.body?.phonepe,
+        address: req.body.address,
+        voteridnumber: req.body?.voteridnumber,
+        adharnumber: req.body?.adharnumber,
+        voteridurl: req.body?.voterIdImage,
+        adharidurl: req.body.adharIdImage,
+        mandal: mandals,
+        password: req.body?.password,
+        role: req.body?.role ? req.body?.role : "3",
+        assembly: req.body.assembly,
+        score: "",
+        pay_mode_admin: "false",
+        pay_mode_user: "false",
+        payment_text_user: "false",
+        assign_task: "no",
+        banknumber: req.body?.banknumber,
+        IFSC: req.body?.IFSC,
+        bankname: req.body?.bankname,
+        fatherName: req.body?.fatherName,
+        motherName: req.body?.motherName,
+        dateOfRegister: req.body.dateOfRegister,
+        pinCode: req.body.pinCode,
+        profilePic: req.body.profilePic,
+        downloadPreview: 0,
+        branchName: req.body?.branchName,
+      };
+      await userModal.insertOne(doc);
+      return res.status(200).json({
+        resp: true,
+        msg: "Registration Successfully ..!",
+      });
+    } catch (error) {
+      return res.status(500).json({
+        msg: error,
+      });
+    }
   }
 };
 
