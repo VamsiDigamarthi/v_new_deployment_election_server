@@ -367,10 +367,14 @@ export const allUserDataFromPDFFile = async (req, res) => {
             // dateOfRegister: 1,
             assembly: 1,
 
+            voteridurl: 1,
+
+            adharidurl: 1,
             profilePic: 1,
           },
         }
       )
+      // .limit(2)
 
       .toArray();
     res.status(200).json(users);
