@@ -350,13 +350,14 @@ export const allUserDataFromPDFFile = async (req, res) => {
         },
         {
           projection: {
-            _id: 0,
+            _id: 1,
             // state: 1,
-            // district: 1,
+            district: 1,
             name: 1,
             phone: 1,
             email: 1,
             pinCode: 1,
+            address: 1,
             // phonepe: 1,
             // role: 1,
             fatherName: 1,
