@@ -60,17 +60,56 @@ export const onChangeRole = async (req, res) => {
   }
 };
 
-
 export const accessUserByPhone = async (req, res) => {
   const userModal = getDb().db().collection("users");
   try {
     const user = await userModal.findOne({ phone: req.params.phone });
     if (user) {
-        res.status(200).json(user);
+      res.status(200).json(user);
     } else {
       res.status(401).json({ msg: "User Not Found" });
     }
   } catch (error) {
-    
+    return res.status(500).json({
+      msg: error,
+    });
   }
-}
+};
+
+export const fetchOnlAssamPsData = async (req, res) => {
+  console.log("fgbhnjm,.");
+  const psModal = getDb().db().collection("ps_details");
+  try {
+    const result = await psModal.find({ State: "Assam" }).toArray();
+    res.status(200).json(result);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      msg: error,
+    });
+  }
+};
+
+export const fetchPdfDataAssemblyDistrictWise = async (req, res) => {
+  const userModal = getDb().db().collection("users");
+  try {
+    const result = await userModal
+      .find({
+        $and: [
+          {
+            state: "Assam",
+          },
+          { assembly: req.params?.assembly },
+          {
+            district: req.params?.district,
+          },
+        ],
+      })
+      .toArray();
+    res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json({
+      msg: error,
+    });
+  }
+};
