@@ -4,8 +4,12 @@ import {
   deleteSpecificStateAndDistrictPSs,
   fetchOnlAssamPsData,
   fetchPdfDataAssemblyDistrictWise,
+  firstFetchDistrciUser,
   onChangeRole,
   onGetAllStatepsDetails,
+  removeWhiteSPace,
+  updatedAssemblyByPhone,
+  updatedAssemblyDistrictWise,
 } from "../Controllers/OwnController.js";
 
 const router = express.Router();
@@ -27,5 +31,18 @@ router.get(
   "/fetch/pdf/data/assembly/:assembly/district/:district",
   fetchPdfDataAssemblyDistrictWise
 );
+
+//
+//
+//
+// user signup data modifications write new apis
+
+router.get("/first/fetch/district/all/user/:district", firstFetchDistrciUser);
+
+router.put("/remove/white/space/:district", removeWhiteSPace);
+
+router.put("/update/assembly/:district/:assembly", updatedAssemblyDistrictWise);
+
+router.put("/update/phone/assembly/:phone", updatedAssemblyByPhone);
 
 export default router;
