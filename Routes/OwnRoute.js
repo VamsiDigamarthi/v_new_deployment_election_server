@@ -4,9 +4,13 @@ import {
   deleteSpecificStateAndDistrictPSs,
   fetchOnlAssamPsData,
   fetchPdfDataAssemblyDistrictWise,
+  findUserSpecificDistrict,
+  findUserSpecificDistrictUpdatedAssembly,
   firstFetchDistrciUser,
   onChangeRole,
   onGetAllStatepsDetails,
+  onMultipleRegistorFind,
+  ownNameUpdateDistrictValue,
   removeWhiteSPace,
   updatedAssemblyByPhone,
   updatedAssemblyDistrictWise,
@@ -43,6 +47,23 @@ router.put("/remove/white/space/:district", removeWhiteSPace);
 
 router.put("/update/assembly/:district/:assembly", updatedAssemblyDistrictWise);
 
-router.put("/update/phone/assembly/:phone", updatedAssemblyByPhone);
+router.put("/update/phone/assembly/:phone/:assembly", updatedAssemblyByPhone);
+
+router.put(
+  "/find/user/specific/district/:district/update/:updated",
+  findUserSpecificDistrict
+);
+
+router.get(
+  "/find/user/specific/district/:district/update/assembly/:assembly/updated/:updated",
+  findUserSpecificDistrictUpdatedAssembly
+);
+
+router.get(
+  "/own/district/name/update/district/:district/value/:value",
+  ownNameUpdateDistrictValue
+);
+
+router.get("/mutliple/registor/find", onMultipleRegistorFind);
 
 export default router;

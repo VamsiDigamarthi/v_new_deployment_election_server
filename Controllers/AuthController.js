@@ -276,15 +276,35 @@ export const loginOtp = async (req, res) => {
     )
       .then(() => {
         otoModal
-          .updateOne({ phone: phone }, { $set: { otp_value: otp } })
-          .then(() => {
-            return res.status(200).json({ msg: "otp send updated db" });
+          .findOne({ phone: phone })
+          .then((result) => {
+            // console.log(result);
+            if (result) {
+              otoModal
+                .updateOne({ phone: phone }, { $set: { otp_value: otp } })
+                .then(() => {
+                  return res.status(200).json({ msg: "otp send updated db" });
+                })
+                .catch((err) => {
+                  return res.status(500).json({
+                    msg: err,
+                  });
+                });
+            } else {
+              const doc = { phone: phone, otp_value: otp };
+              otoModal
+                .insertOne(doc)
+                .then(() => {
+                  return res.status(200).json({ msg: "otp send updated db" });
+                })
+                .catch((err) => {
+                  return res.status(500).json({
+                    msg: err,
+                  });
+                });
+            }
           })
-          .catch((err) => {
-            return res.status(500).json({
-              msg: err,
-            });
-          });
+          .catch((e) => console.log(`otp checking user in login ${e}`));
       })
       .catch((e) => console.log(e));
   } else {
@@ -308,5 +328,7 @@ export const loginVerifyOtp = async (req, res) => {
         msg: "Otp Invalid",
       });
     }
+  } else {
+    console.log("no otp");
   }
 };
