@@ -425,8 +425,36 @@ export const onMultipleRegistorFind = async (req, res) => {
         },
       ])
       .toArray();
-    // console.log(multipleRegistrations.length);
+    console.log(multipleRegistrations.length);
     res.json(multipleRegistrations);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const updatedUserBYPhoneADistrictAssembly = async (req, res) => {
+  const userModal = getDb().db().collection("users");
+  try {
+    const result = await userModal.findOne({ phone: req.params.phone });
+
+    if (result) {
+      // await userModal.updateOne(
+      //   { phone: req.params.phone },
+      //   {
+      //     $set: {
+      //       district: req.body.district,
+
+      //       assembly: req.body.assembly,
+      //     },
+      //   }
+      // );
+      // return res.status(200).json({ msg: "Updated User" });
+      //
+      return res.status(200).json(result);
+    } else {
+      return res.status(401).json({ msg: "User Not Found" });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });

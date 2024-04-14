@@ -14,6 +14,7 @@ import {
   removeWhiteSPace,
   updatedAssemblyByPhone,
   updatedAssemblyDistrictWise,
+  updatedUserBYPhoneADistrictAssembly,
 } from "../Controllers/OwnController.js";
 
 const router = express.Router();
@@ -65,5 +66,10 @@ router.get(
 );
 
 router.get("/mutliple/registor/find", onMultipleRegistorFind);
+
+router.put(
+  "/updated/users/byphone/:phone",
+  updatedUserBYPhoneADistrictAssembly
+);
 
 export default router;

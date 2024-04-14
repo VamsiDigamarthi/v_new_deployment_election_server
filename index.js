@@ -77,6 +77,10 @@ if (cluster.isMaster) {
 //   }
 // });
 
+app.get("/", (req, res) => {
+  res.status(200).send("Hello World");
+});
+
 app.delete("/deltask", async (req, res) => {
   const userModal = getDb().db().collection("tasks");
   try {

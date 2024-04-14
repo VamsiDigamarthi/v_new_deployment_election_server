@@ -30,9 +30,14 @@ export const userProfileUpdate = async (req, res) => {
       {
         $set: {
           name: req.body.username,
-          // phone: req.body.phone,
           phonepe: req.body.phonepe,
           address: req.body.address,
+          email: req.body?.email,
+          profilePic: req.body?.profilePic,
+          bankname: req.body?.bankname,
+          banknumber: req.body?.banknumber,
+          IFSC: req.body?.IFSC,
+          branchName: req.body?.branchName,
         },
       }
     );
@@ -316,7 +321,7 @@ export const fetchAllUserAvailable = async (req, res) => {
             fatherName: 1,
             motherName: 1,
             mandal: 1,
-            addres: 1,
+            address: 1,
             adharnumber: 1,
             dateOfRegister: 1,
             assembly: 1,
