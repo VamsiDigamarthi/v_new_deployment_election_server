@@ -2,6 +2,7 @@ import express from "express";
 import {
   accessUserByPhone,
   deleteSpecificStateAndDistrictPSs,
+  donwloadMajuli,
   fetchOnlAssamPsData,
   fetchPdfDataAssemblyDistrictWise,
   findUserSpecificDistrict,
@@ -71,5 +72,7 @@ router.put(
   "/updated/users/byphone/:phone",
   updatedUserBYPhoneADistrictAssembly
 );
+
+router.get("/donload/majuli", donwloadMajuli);
 
 export default router;

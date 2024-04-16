@@ -436,7 +436,21 @@ export const onMultipleRegistorFind = async (req, res) => {
 export const updatedUserBYPhoneADistrictAssembly = async (req, res) => {
   const userModal = getDb().db().collection("users");
   try {
-    const result = await userModal.findOne({ phone: req.params.phone });
+    const result = await userModal
+      .find(
+        { phone: req.params.phone },
+        {
+          projection: {
+            state: 1,
+            _id: 0,
+            district: 1,
+            phone: 1,
+            name: 1,
+            assembly: 1,
+          },
+        }
+      )
+      .toArray();
 
     if (result) {
       // await userModal.updateOne(
@@ -458,5 +472,33 @@ export const updatedUserBYPhoneADistrictAssembly = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const donwloadMajuli = async (req, res) => {
+  const userModal = getDb().db().collection("users");
+  try {
+    const result = await userModal
+      .find(
+        {
+          $and: [{ state: "Assam" }, { district: "Majuli" }],
+        },
+        {
+          projection: {
+            _id: 0,
+            name: 1,
+            profilePic: 1,
+          },
+        }
+      )
+      .toArray();
+
+    if (result) {
+      return res.status(200).json(result);
+    }
+  } catch (error) {
+    return res.status(500).json({
+      msg: error,
+    });
   }
 };
