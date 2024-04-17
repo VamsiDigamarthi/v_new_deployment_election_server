@@ -3,6 +3,7 @@ import {
   accessUserByPhone,
   deleteSpecificStateAndDistrictPSs,
   donwloadMajuli,
+  downloadUserSomeCount,
   fetchOnlAssamPsData,
   fetchPdfDataAssemblyDistrictWise,
   findUserSpecificDistrict,
@@ -73,6 +74,8 @@ router.put(
   updatedUserBYPhoneADistrictAssembly
 );
 
-router.get("/donload/majuli", donwloadMajuli);
+router.get("/donload/majuli/district/:district", donwloadMajuli);
+
+router.get("/download/user/some/count", downloadUserSomeCount);
 
 export default router;

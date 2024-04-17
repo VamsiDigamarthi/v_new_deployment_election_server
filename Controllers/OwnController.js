@@ -481,7 +481,7 @@ export const donwloadMajuli = async (req, res) => {
     const result = await userModal
       .find(
         {
-          $and: [{ state: "Assam" }, { district: "Majuli" }],
+          $and: [{ state: "Assam" }, { district: req.params.district }],
         },
         {
           projection: {
@@ -491,6 +491,27 @@ export const donwloadMajuli = async (req, res) => {
           },
         }
       )
+      .toArray();
+
+    if (result) {
+      return res.status(200).json(result);
+    }
+  } catch (error) {
+    return res.status(500).json({
+      msg: error,
+    });
+  }
+};
+
+export const downloadUserSomeCount = async (req, res) => {
+  const userModal = getDb().db().collection("users");
+  try {
+    const result = await userModal
+      .find({
+        state: "Assam",
+      })
+      .limit(100)
+      .skip(1000)
       .toArray();
 
     if (result) {
