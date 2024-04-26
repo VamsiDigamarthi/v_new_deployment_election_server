@@ -101,16 +101,17 @@ const updateUserTaskAddedToPsDetails = async (req, res) => {
 };
 export const assignAllTaskToUser = async (req, res) => {
   const taskModal = getDb().db().collection("tasks");
+
   var values = [];
   for (let i of req.body["array"]) {
     values.push({
-      PS_name: i.PS_Name_and_Address,
-      AC_name: i.AC_Name,
-      PS_No: i.PS_No,
-      AC_No: i.AC_No,
-      district: i.District,
+      PS_name: i?.PS_Name_and_Address,
+      AC_name: i?.AC_Name,
+      PS_No: i?.PS_No,
+      AC_No: i?.AC_No,
+      district: i?.District,
       //  mandal: i.Mandal,
-      //  location: i.Location,
+      location: i?.Location_Name,
       kit_start: "",
       kit_end: "",
       InstallationCertificate: "",

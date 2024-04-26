@@ -11,7 +11,7 @@ export const signUp = async (req, res) => {
   // console.log("ghnm,.")
   // console.log(req.body);
   const userModal = getDb().db().collection("users");
-  let mandals = req.body.mandal;
+  let mandals = req.body?.mandal;
   mandals = mandals.toString().toLowerCase();
 
   const user = await userModal.findOne({ phone: req.body?.phone });
@@ -33,8 +33,8 @@ export const signUp = async (req, res) => {
         voteridnumber: req.body?.voteridnumber,
         adharnumber: req.body?.adharnumber,
         voteridurl: req.body?.voterIdImage,
-        adharidurl: req.body.adharIdImage,
-        mandal: mandals,
+        adharidurl: req.body?.adharIdImage,
+        mandal: mandals ? mandals : "",
         password: req.body?.password,
         role: req.body?.role ? req.body?.role : "3",
         assembly: req.body.assembly,

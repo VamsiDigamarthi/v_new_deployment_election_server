@@ -488,6 +488,7 @@ export const donwloadMajuli = async (req, res) => {
             _id: 0,
             name: 1,
             profilePic: 1,
+            phone: 1,
           },
         }
       )
@@ -510,8 +511,8 @@ export const downloadUserSomeCount = async (req, res) => {
       .find({
         state: "Assam",
       })
-      .limit(100)
-      .skip(1000)
+      .limit(2)
+      .skip(3183)
       .toArray();
 
     if (result) {
